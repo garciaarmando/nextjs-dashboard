@@ -1,32 +1,41 @@
-'use client'
+'use client';
 
-import { useAppSelector } from "@/store"
-import { PokemonGrid } from "./PokemonGrid"
-import { useState } from "react"
-import { IoHeartOutline } from "react-icons/io5"
+import { useAppSelector } from "@/store";
+import { PokemonGrid } from "./PokemonGrid";
+import { useEffect, useState } from "react";
+import { IoHeartOutline } from "react-icons/io5";
+
 
 export const FavoritePokemons = () => {
-  const favoritePokemons = useAppSelector(state => Object.values(state.pokemons))
-  const [pokemons, setPokemons] = useState(favoritePokemons)
+
+  const favoritePokemons = useAppSelector( state => Object.values( state.pokemons.favorites ) );
+  // const [pokemons, setPokemons ] = useState( favoritePokemons );
+
+  // useEffect(() => {
+  //   // console.log({ favoritePokemons });
+  //   // setPokemons( favoritePokemons );
+  // }, [favoritePokemons])
+  
+
   return (
     <>
-
-      {pokemons.length === 0
-        ? (<NoFavorites />)
-        : (<PokemonGrid pokemons={pokemons} />)
-      }
-
+        {/* <PokemonGrid pokemons={ favoritePokemons } /> */}
+        {
+          favoritePokemons.length === 0
+            ? (<NoFavorites />)
+            : (<PokemonGrid pokemons={ favoritePokemons } />)
+        }    
     </>
-
   )
 }
 
 
+
 export const NoFavorites = () => {
   return (
-    <div className="flex flex-col h-[50vh] items-center justify-center">
+    <div className="flex flex-col h-[50vh] items-center justify-center ">
       <IoHeartOutline size={100} className="text-red-500" />
-      <span>There are no favorites</span>
+      <span>No hay favoritos</span>
     </div>
   )
 }
