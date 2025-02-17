@@ -18,7 +18,6 @@ export const ProductCard = ({ id, name, price, rating, image }: Props) => {
 
   const onAddToCart = () => {
     addProductToCart(id);
-
   }
   return (
     <div className="bg-white shadow rounded-lg max-w-smbg-gray-800 border-gray-100">
