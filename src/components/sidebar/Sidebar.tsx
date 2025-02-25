@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { CiLogout } from 'react-icons/ci';
-import { SidebarItem } from './SidebarItem';
+
 import { IoBasketOutline, IoCalendarOutline, IoCheckboxOutline, IoCodeWorkingOutline, IoListOutline, IoPerson, IoPersonOutline } from 'react-icons/io5';
-import { auth } from '../../auth';
+import { auth } from '../../../auth';
 import { redirect } from "next/navigation";
+import { SidebarItem } from './SidebarItem';
+import { signOut } from 'next-auth/react';
+import LogoutButton from './LogoutButton';
 
 
 const menuItems = [
@@ -45,9 +47,7 @@ export const Sidebar = async () => {
 
   const session = await auth();
 
-    if (!session) {
-      redirect('/api/auth/signin')
-    }
+    if (!session) redirect('/api/auth/signin')
 
     const avatarUrl = (session?.user?.image) ? session.user.image : 'https://avatars.dicebear.com/api/avataaars/seed.svg';
     const userName = session?.user?.name ?? 'No user name available'; ;
@@ -92,10 +92,7 @@ export const Sidebar = async () => {
       </div>
 
       <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-        <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
-          <CiLogout />
-          <span className="group-hover:text-gray-700">Logout</span>
-        </button>
+        <LogoutButton />
       </div>
     </aside>
   )
