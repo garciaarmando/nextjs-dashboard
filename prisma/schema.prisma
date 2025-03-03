@@ -22,7 +22,7 @@ model Todo {
 // AuthJS
  
 model User {
-  id            String          @id @default(cuid())
+  id            String          @id @default(uuid())
   name          String?
   email         String          @unique
   emailVerified DateTime?
