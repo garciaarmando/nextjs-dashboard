@@ -5,6 +5,11 @@ import { useSession } from "next-auth/react";
 export default function ProfilePage() {
 
     const {data: session } = useSession()
+    const name = session?.user?.name ?? 'No Name'
+    const email  = session?.user?.email ?? 'No Email'
+    const image = session?.user?.image ?? 'No image'
+    const userRoles = session?.user?.roles ?? ['client'];
+    const userRolesJoin = userRoles.join(', ')
 
     return (
         <div>
@@ -13,9 +18,10 @@ export default function ProfilePage() {
             <hr />
 
             <div className="flex flex-col">
-                <span>{session?.user?.name ?? 'No Name'}</span>
-                <span>{session?.user?.email ?? 'No Email'}</span>
-                <span>{session?.user?.image ?? 'No image'}</span>
+                <span>{name}</span>
+                <span>{email}</span>
+                <span>{image}</span>
+                <span>{userRolesJoin}</span>
             </div>
         </div>
     );
