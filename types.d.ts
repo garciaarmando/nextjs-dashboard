@@ -3,14 +3,10 @@ import { JWT } from "next-auth/jwt"
  
  
 interface IUser extends DefaultUser {
-  /**
-   * Roles del usuario
-   */
+  // user's roles
   roles?: string[];
   id: string;
-  /**
-   * Agregar cualquier otro campo que tu manejas
-   */
+  // You can add more fields if needed
 }
  
 declare module "next-auth" {
